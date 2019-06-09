@@ -6,8 +6,16 @@
   $db  = new mysqli($dbServer, $dbUser, $dbPassword, $dbName);
     if ($db->connect_errno) { 
         echo "Connection Failed";
+        exit;
     }
-echo "<h1> la mia pagina di test versione 2 </h1>";
-echo "<h2> eseguo test sui commit e rebuild di openshift</h2>";
-echo "";
+    $query = "SELECT * FROM progetti";
+    $aResults = array();
+    $result = $db->query($query);
+    while($row = $result->fetch_assoc()) {
+        $aResults[] = $row;
+    }
+    echo "<pre>";
+    print_r($aResults);
+    echo "</pre>";
+
 ?>
